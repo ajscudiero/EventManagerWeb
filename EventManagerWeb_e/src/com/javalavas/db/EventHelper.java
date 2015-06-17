@@ -3,6 +3,8 @@ import java.sql.*;
 
 public class EventHelper {
 	
+	private static String db = "java_lava_db";
+	
 	public static void main(String[] args) throws SQLException
 	{
 
@@ -25,7 +27,7 @@ public class EventHelper {
 			try{
 				Statement stmt = conn.createStatement();
 				
-				String query = "INSERT INTO java_lava_db.Event (Title, StartDate, EndDate, Category_ID, Type_ID, Description, Owner_ID, Logo_Path"
+				String query = "INSERT INTO " + db + ".Event (Title, StartDate, EndDate, Category_ID, Type_ID, Description, Owner_ID, Logo_Path"
 						+ ", Location, Status) VALUES ( '" + title + "', '" + startDate + "', '" + endDate + "', '" + categoryId + "', '" + eventTypeId +
 						"', '" + description + "', '" + owner_id + "', '" + logo_path + "', '" + location + "', '" + status + "');";
 			    stmt.executeUpdate(query);
@@ -43,7 +45,7 @@ public class EventHelper {
 		try{
 			Statement stmt = conn.createStatement();
 			
-			String query = "UPDATE java_lava_db.Event "
+			String query = "UPDATE " + db + ".Event "
 					+ "SET Title='" + title + "', StartDate='" + startDate + "', EndDate='" + endDate + "', Category_ID='" + categoryId
 					+ "', Type_ID='" + eventTypeId + "', Description='" + description + "', Owner_ID='" + owner_id + "', Logo_Path='" + 
 					logo_path + "', Location='" + location + "', Status='" + status + "' " +
@@ -62,7 +64,7 @@ public class EventHelper {
 		try{
 			Statement stmt = conn.createStatement();
 			
-			String query = "INSERT INTO java_lava_db.Registration (Event_ID, User_ID) VALUES ( '" + eventId + "', '" + userId + "');";
+			String query = "INSERT INTO " + db + ".Registration (Event_ID, User_ID) VALUES ( '" + eventId + "', '" + userId + "');";
 		    stmt.executeUpdate(query);
 		   
 		} catch ( SQLException e ) {
@@ -79,7 +81,7 @@ public class EventHelper {
 			Statement stmt = conn.createStatement();
 			
 			String query = "SELECT * "
-					+ "FROM java_lava_db.Event "
+					+ "FROM " + db + ".Event "
 					+ "INNER JOIN Registrations ON java_lava_db.Registrations.Event_Id=java_lava_db.Event.ID "
 					+ "WHERE java_lava_db.Registrations.User_Id=" + userId +";";
 			rs = stmt.executeQuery(query);
@@ -100,7 +102,7 @@ public class EventHelper {
 			Statement stmt = conn.createStatement();
 			
 			String query = "SELECT * "
-					+ "FROM java_lava_db.Event "
+					+ "FROM " + db + ".Event "
 					+ "WHERE java_lava_db.Event.Owner_Id='" + userId + "');";
 			rs = stmt.executeQuery(query);
 			
@@ -118,7 +120,7 @@ public class EventHelper {
 		try{
 			Statement stmt = conn.createStatement();
 			
-			String query = "SELECT * FROM java_lava_db.Event";
+			String query = "SELECT * FROM " + db + ".Event";
 			rs = stmt.executeQuery(query);
 			
 		} catch ( SQLException e ) {
@@ -137,8 +139,8 @@ public class EventHelper {
 			Statement stmt = conn.createStatement();
 			
 			String query = "SELECT * "
-					+ "FROM java_lava_db.Event "
-					+ "WHERE java_lava_db.Event.ID=" + id + ";";
+					+ "FROM " + db + ".Event "
+					+ "WHERE " + db + ".Event.ID=" + id + ";";
 			rs = stmt.executeQuery(query);
 			
 		} catch ( SQLException e ) {
@@ -157,8 +159,8 @@ public class EventHelper {
 			Statement stmt = conn.createStatement();
 			
 			String query = "SELECT * "
-					+ "FROM java_lava_db.Event "
-					+ "WHERE java_lava_db.Event.StartDate BETWEEN " + startDateTime + " AND " + endDateTime + ";";
+					+ "FROM " + db + ".Event "
+					+ "WHERE " + db + ".Event.StartDate BETWEEN " + startDateTime + " AND " + endDateTime + ";";
 			rs = stmt.executeQuery(query);
 			
 		} catch ( SQLException e ) {

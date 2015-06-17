@@ -49,7 +49,7 @@ public class RegisterEventServlet extends HttpServlet {
 		String location = request.getParameter("location");
 		String additionalInfo = request.getParameter("additionalInfo");
 		String meetingType = request.getParameter("meetingType");
-	
+		//int userId = session.getAttribute("userId");
 		//register event in db
 		try{
 			java.sql.Connection conn = Connect.getConnection();
