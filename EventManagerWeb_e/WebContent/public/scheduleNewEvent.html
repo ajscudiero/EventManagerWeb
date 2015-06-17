@@ -1,0 +1,94 @@
+
+<!DOCTYPE HTML>
+<html>
+
+<head>
+<script type="text/javascript" src="components/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="components/bootstrap/js/bootstrap.js"></script>
+<link rel="stylesheet" href="components/bootstrap/css/bootstrap.css"type="text/css"/>
+
+<style>
+.nonBoldLabel{
+font-weight:normal;
+}
+</style>
+<title>Test New Event</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<script src="components/jquery-2.1.4.min.js"></script> 
+    <script> 
+    $(function(){
+      $("#includedContent").load("navBar.html"); 
+    });
+    </script> 	
+</head>
+<body>	
+
+	<div id="includedContent"></div>
+
+		<div class="sign_up">
+			<!----------start form----------->
+			<form class="sign" action="#">
+				<div class="formtitle">Schedule New Event</div>
+				<!----------start top_section----------->				
+				<div class="top_section">
+				
+				<div class="section">
+						<div class="input-sign details">
+							<input type="text"  placeholder="Event Name"  required /> 
+						</div>
+						<div class="input-sign details1">
+						<label class="nonBoldLabel">Date:</label>
+							<input type="date" placeholder="Date" required />
+						</div>
+						<div class="clear"></div>
+					<div class="section">
+						<div class="input details">
+						<label class="nonBoldLabel">Start Time:</label>
+							<input type="time"  placeholder="Start Time"  required/>
+							
+						</div>
+						<div class="input details1">
+							<label class="nonBoldLabel">End Time:</label>
+							<input type="time"  placeholder="End Time" required/>
+						</div>
+						<div class="clear"> </div>
+					</div>
+					
+						<div class="clear"> </div>
+					</div>
+				</div>
+
+				<div class="bottom-section">
+					<div class="section">
+						<div class="input-sign details">
+							<input type="text"  placeholder="Location" required/>
+						</div>
+						<div class="clear"> </div>
+					</div>
+					
+					<div class="section">
+						<div class="input-sign details">
+							<input type="text"  placeholder="Additional Information" required/>
+						</div>
+						<div class="clear"> </div>
+					</div>
+					
+					<div class="section-country">
+					<select id="meetingType"  class="frm-field required">
+		            	<option value="null"> Type</option>         
+		            	<option value="ME">Meeting</option>
+		         	</select>
+					</div>
+					<div class="submit">
+						<input class="bluebutton submitbotton" type="submit" value="Sign up" />
+					</div>
+				</div>
+			</form>
+		</div>
+		
+		
+</body>
+</html>
