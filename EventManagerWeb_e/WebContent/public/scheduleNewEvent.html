@@ -12,7 +12,7 @@
 font-weight:normal;
 }
 </style>
-<title>Test New Event</title>
+<title>View Event</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
@@ -37,22 +37,22 @@ font-weight:normal;
 				
 				<div class="section">
 						<div class="input-sign details">
-							<input type="text"  placeholder="Event Name"  required /> 
+							<input type="text"  placeholder="Event Name" name="eventName" required /> 
 						</div>
 						<div class="input-sign details1">
 						<label class="nonBoldLabel">Date:</label>
-							<input type="date" placeholder="Date" required />
+							<input type="date" placeholder="Date" name ="date" required />
 						</div>
 						<div class="clear"></div>
 					<div class="section">
 						<div class="input details">
 						<label class="nonBoldLabel">Start Time:</label>
-							<input type="time"  placeholder="Start Time"  required/>
+							<input type="time"  placeholder="Start Time" name="startTime" required/>
 							
 						</div>
 						<div class="input details1">
 							<label class="nonBoldLabel">End Time:</label>
-							<input type="time"  placeholder="End Time" required/>
+							<input type="time"  placeholder="End Time" name="endTime" required/>
 						</div>
 						<div class="clear"> </div>
 					</div>
@@ -64,22 +64,22 @@ font-weight:normal;
 				<div class="bottom-section">
 					<div class="section">
 						<div class="input-sign details">
-							<input type="text"  placeholder="Location" required/>
+							<input type="text"  placeholder="Location" name="location" required/>
 						</div>
 						<div class="clear"> </div>
 					</div>
 					
 					<div class="section">
 						<div class="input-sign details">
-							<input type="text"  placeholder="Additional Information" required/>
+							<input type="text"  placeholder="Additional Information" name="additionalInfo" required/>
 						</div>
 						<div class="clear"> </div>
 					</div>
 					
 					<div class="section-country">
-					<select id="meetingType"  class="frm-field required">
+					<select name="meetingType"  class="frm-field required">
 		            	<option value="null"> Type</option>         
-		            	<option value="ME">Meeting</option>
+		            	<option value="meeting">Meeting</option>
 		         	</select>
 					</div>
 					<div class="submit">
