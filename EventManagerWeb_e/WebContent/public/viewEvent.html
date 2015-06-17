@@ -12,7 +12,7 @@
 font-weight:normal;
 }
 </style>
-<title>Search</title>
+<title>View Event</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
@@ -31,65 +31,68 @@ font-weight:normal;
 		<div class="sign_up">
 			<!----------start form----------->
 			<form class="sign" action="#">
-				<div class="formtitle">Search Events</div>
+				<div class="formtitle">View Event</div>
 				<!----------start top_section----------->				
 				<div class="top_section">
 				
 				<div class="section">
 						<div class="input-sign details">
-							<input type="text"  placeholder="Keyword: " name="keyword" required /> 
+							<input type="text"  placeholder="Event Name" name="eventName" required /> 
 						</div>
-					
+						<div class="input-sign details1">
+						<label class="nonBoldLabel">Date:</label>
+							<input type="date" placeholder="Date" name ="date" required />
+						</div>
 						<div class="clear"></div>
 					<div class="section">
 						<div class="input details">
-						<label class="nonBoldLabel">From Date:</label>
+						<label class="nonBoldLabel">Start Time:</label>
 							<input type="time"  placeholder="Start Time" name="startTime" required/>
 							
 						</div>
 						<div class="input details1">
-							<label class="nonBoldLabel">Thru Date:</label>
+							<label class="nonBoldLabel">End Time:</label>
 							<input type="time"  placeholder="End Time" name="endTime" required/>
 						</div>
 						<div class="clear"> </div>
 					</div>
-					
-					<div class="section">
-						<div class="input details">
-							<input type="checkbox" name="completedEvents" value="completed">Show Completed Events
-							
-						</div>
-						<div class="input details1">
-							<input type="checkbox" name="canceledEvents" value="canceled">Show Canceled Events
-						</div>
-						<div class="clear"> </div>
-					</div>
-					
-					
-					
 					
 						<div class="clear"> </div>
 					</div>
 				</div>
 
 				<div class="bottom-section">
+					<div class="section">
+						<div class="input-sign details">
+							<input type="text"  placeholder="Location" name="location" required/>
+						</div>
+						<div class="clear"> </div>
+					</div>
 					
+					<div class="section">
+						<div class="input-sign details">
+							<input type="text"  placeholder="Additional Information" name="additionalInfo" required/>
+						</div>
+						<div class="clear"> </div>
+					</div>
+					
+					<div class="section-country">
+					<select name="meetingType"  class="frm-field required">
+		            	<option value="null"> Type</option>         
+		            	<option value="meeting">Meeting</option>
+		         	</select>
+					</div>
+					<div class="login-help">
+   						 <a href="#">Email Moderator</a></div>
 					<div class="submit">
-						<input class="bluebutton submitbotton" type="submit" value="Sign up" />
+						<input class="bluebutton submitbotton" type="submit" value="Register" />
+					
+						<input class="bluebutton submitbotton" type="submit" value="Back" />
 					</div>
 				</div>
 			</form>
 		</div>
 		
-		<table class="table table-striped">
-  			 <tr>
-			    <td>Event Title</td>
-			    <td>Event Date</td> 
-			    <td>Location</td>
-			  	<td>Status</td>
-			    <td>Actions</td>
-			  </tr>
-			</table>
 		
 </body>
 </html>
