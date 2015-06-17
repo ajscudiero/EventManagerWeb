@@ -28,31 +28,18 @@ public class Update
 		
 		try {
 			
-			//do a check to see if the username is taken
-			Statement usernameCheck = con.createStatement();
-			String usernameCheckQ = "SELECT * FROM " + db + "." + table +
-					" WHERE Username = \"" + userName + "\";";
 			
-			ResultSet results = usernameCheck.executeQuery(usernameCheckQ);
-			if (!results.next()){ //inside, the userName (email) was free  :)
 								
-				 Statement statement = con.createStatement();
-				 String query = "UPDATE "  + db + "." + table + "\n" 
-						 + "SET Username = " + userName + ", Password = " + password + ", FirstName = "+ fName + ", LastName = " 
-						 + lName + ", Address1 = " +  address1 + ", Address2 = " + address2 + ", ", City, State, Zip, PhoneHome, " + "PhoneCell, PhoneOffice, CompanyName, BranchLocation, Food_ID, AdditionalInfo"
-			    		+ ") VALUES ( '" + userName + "', "
-		    			+ "'" + password + "', '" + fName + "', '" + lName + "', '" + address1
-		    			+ "', '" + address2 + "', '" + city + "', '" + state + "', '" + zip + "', '" 
-				    	+ phoneHome + "', '" + phoneCell + "', '" + phoneOffice + "', '" + companyName 
-				    	+ "', '" + branch + "', " + foodId+ ", '" + adtInfo + "'); ";
-				 statement.executeUpdate(query);
-				 return true;
-								
-			}
-			else{
-				//TODO: implement username taken action
-				System.out.println("The username was taken!!  :(");
-			}
+			 Statement statement = con.createStatement();
+			 String query = "UPDATE "  + db + "." + table + "\n" 
+					 + "SET Username = " + userName + ", Password = " + password + ", FirstName = "+ fName + ", LastName = " 
+					 + lName + ", Address1 = " +  address1 + ", Address2 = " + address2 + ", City = "+ city +
+					 ", State = " + state + ", Zip = " + zip + ", PhoneHome = " + phoneHome + ", PhoneCell = " + phoneCell + 
+					 ", PhoneOffice = " + phoneOffice + ", CompanyName = " + companyName + ", BranchLocation = " + branch + 
+					 ", Food_ID = " + foodId + ", AdditionalInfo = " + adtInfo + 
+					 "WHERE " + db + "." + table + ".Username = " + userName;
+			 statement.executeUpdate(query);
+			 return true;
 			
 		} catch (SQLException e) {
 			System.out.println("An error has ocurred");
