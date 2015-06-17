@@ -20,27 +20,24 @@
 <body>	
 
 	<div id="includedContent"></div>
-		
+
 		<div class="sign_up">
 			<!----------start form----------->
-			<form class="sign" method="get" action="echo">
-			<fieldset>
-				
+			<form class="sign" action="#">
+				<div class="formtitle">Register</div>
 				<!----------start top_section----------->
 				<div class="top_section">
 				
 				<div class="section">
-						
-					<div class="section">
 						<div class="input-sign email">
-							<input type="email"  name = "username" placeholder="Email"  required /> 
+							<input type="email"  placeholder="Email"  required /> 
 						</div>
 						<div class="input-sign re-email">
 							<input type="email" placeholder="Re-confirm email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Re-confirm email';}"required />
 						</div>
 					<div class="section">
 						<div class="input password">
-							<input type="password" name = "password"  placeholder="Password"  required/>
+							<input type="password"  placeholder="Password"  required/>
 							
 						</div>
 						<div class="input password">
@@ -58,10 +55,10 @@
 					<!----------start name section----------->
 					<div class="section">
 						<div class="input-sign details">
-							<input type="text"  placeholder="First Name" name = "firstName" required/>
+							<input type="text"  placeholder="First Name" required/>
 						</div>
 						<div class="input-sign details1">
-							<input type="text"  placeholder="Last Name" name = "lastName" required/>
+							<input type="text"  placeholder="Last Name" required/>
 						</div>
 						<div class="clear"> </div>
 					</div>
@@ -78,30 +75,30 @@
 					<!----------start city section----------->
 					<div class="section">
 						<div class="input-sign details">
-							<input type="text"  placeholder="City" name = "city" required/> 
+							<input type="text"  placeholder="City" required/> 
 						</div>
 						<div class="input-sign details1">
-							<input type="text"  placeholder="Province" name = "state" required/> 
+							<input type="text"  placeholder="Province" required/> 
 						</div>
 						<div class="clear"> </div>
 					</div>
 					
 					<div class="section">
 						<div class="input-sign details">
-							<input type="text"  placeholder="Home Phone" name = "homePhone" required/> 
+							<input type="text"  placeholder="Home Phone" required/> 
 						</div>
 						<div class="input-sign details1">
-							<input type="text"  placeholder="Cell Phone" name = "cellPhone" required/> 
+							<input type="text"  placeholder="Cell Phone" required/> 
 						</div>
 						<div class="clear"> </div>
 					</div>
 					
 					<div class="section">
 						<div class="input-sign details">
-							<input type="text"  placeholder="Company Name" name = "companyName" required/> 
+							<input type="text"  placeholder="Company Name" required/> 
 						</div>
 						<div class="input-sign details1">
-							<input type="text"  placeholder="Branch Location" name = "branch" required/> 
+							<input type="text"  placeholder="Branch Location" required/> 
 						</div>
 						<div class="clear"> </div>
 					</div>
@@ -109,10 +106,10 @@
 					<!----------start Address section----------->
 					<div class="section">
 						<div class="input-sign details">
-							<input type="text"  placeholder="Address1" name = "address1" required/> 
+							<input type="text"  placeholder="Address1" required/> 
 						</div>
 						<div class="input-sign details1">
-							<input type="text"  placeholder="Address2" name = "address2" required/> 
+							<input type="text"  placeholder="Address2" required/> 
 						</div>
 						<div class="clear"> </div>
 					</div>
@@ -122,17 +119,15 @@
 		            <option value="null"> Food</option>         
 		            <option value="AX">Chicken</option>
 		            
-		         
+		            
 		            
 		         </select>
 					</div>
 					<div class="submit">
-						<input class="bluebutton submitbotton" type="submit" value="SEND" />
+						<input class="bluebutton submitbotton" type="submit" value="Sign up" />
 					</div>
 				</div>
-				</fieldset>
 			</form>
-			</div>
-		
+		</div>
 </body>
 </html>
