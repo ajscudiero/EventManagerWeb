@@ -10,7 +10,9 @@
 <%@page import="javax.servlet.http.HttpServlet" %>
 <%@page import="javax.servlet.http.HttpServletRequest" %>
 <%@page import="javax.servlet.http.HttpServletResponse" %>
-<%@page import="com.javalavas.db.Connect" %><html>
+<%@page import="com.javalavas.db.Connect" %>
+<%@page import="com.javalavas.db.EventHelper" %>
+<%@page import="com.javalavas.db.UserHelper" %><html>
 <head>
 <link rel="shortcut icon" href="favicon.ico">
 <script type="text/javascript" src="components/jquery-2.1.4.min.js"></script>
@@ -35,9 +37,11 @@
 				<table class="table table-striped">
 <%  
 String user = null;
+int id = -1;
 if(session.getAttribute("user") == null){
     response.sendRedirect("index.html");
 }else user = (String) session.getAttribute("user");
+
 String userName = null;
 String sessionID = null;
 Cookie[] cookies = request.getCookies();
@@ -52,14 +56,15 @@ for(Cookie cookie : cookies){
 Class.forName("com.mysql.jdbc.Driver");
 
 Connection con = Connect.getConnection();
+id = UserHelper.getID(con,user);
 System.out.println("Connection created");
 Statement stmt = con.createStatement();
-ResultSet rs = stmt.executeQuery("select * from Event");%>
+ResultSet rs;
+rs = EventHelper.getRegisteredEvents(con,id);%>
 
 <table align="center" border="1" class="table table-striped">
-
   <tr>
-    <td>ID</td>
+    <td>ID </td>
     <td>Title</td>
     <td>StartDate</td>
     <td>EndDate</td>
@@ -70,6 +75,7 @@ ResultSet rs = stmt.executeQuery("select * from Event");%>
     <td>Status</td>
 
   </tr>
+  
    <% while (rs.next()) {%>
   <tr>
    <td><%=rs.getString("ID")%></td>

@@ -1,6 +1,12 @@
 package com.javalavas.servlets;
 
 import java.io.IOException;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
@@ -11,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.javalavas.db.Connect;
 import com.javalavas.db.EventHelper;
+import com.javalavas.db.UserHelper;
 import com.mysql.jdbc.Connection;
 
 /**
@@ -49,11 +56,18 @@ public class RegisterEventServlet extends HttpServlet {
 		String location = request.getParameter("location");
 		String additionalInfo = request.getParameter("additionalInfo");
 		String meetingType = request.getParameter("meetingType");
-		//int userId = session.getAttribute("userId");
+		int userId = -1;
+   	 	HttpSession session = request.getSession();
+   	 	String user = null;
+		if(session.getAttribute("user") == null){
+		    response.sendRedirect("index.html");
+		}else user = (String) session.getAttribute("user");
+
 		//register event in db
 		try{
 			java.sql.Connection conn = Connect.getConnection();
-			EventHelper.createEvent( conn, eventName, date + " " + startTime, date + " " + endTime, "1", additionalInfo, "1", "/path", location, "PENDING");
+			userId = UserHelper.getID(conn, user);
+			EventHelper.createEvent( conn, eventName, date + " " + startTime, date + " " + endTime, "1", additionalInfo, userId, "/path", location, "PENDING");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

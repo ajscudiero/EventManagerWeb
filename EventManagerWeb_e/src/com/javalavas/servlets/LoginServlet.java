@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import com.javalavas.db.Connect;
 import com.javalavas.db.SignIn;
+import com.javalavas.db.UserHelper;
 import com.mysql.jdbc.Connection;
 
 /**
@@ -57,16 +58,15 @@ public class LoginServlet extends HttpServlet {
 	         out.println("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>");
 	         out.println("<title>Login Servlet</title></head>");
 	         out.println("<body>");
-	 
+	         
 	         // Retrieve the value of the query parameter "username" (from text field)
 	         String username = request.getParameter("user");
+	         
 	        
 	         // Retrieve the value of the query parameter "password" (from password field)
 	         String password = request.getParameter("pass");
 	         
 	         boolean userExists = false;
-	        
-	         
 	         try{
 	        	 java.sql.Connection conn = Connect.getConnection();
 	        	 userExists = SignIn.logIn(conn, username, password);
@@ -76,11 +76,12 @@ public class LoginServlet extends HttpServlet {
 	         
 	         if(userExists == true )
 	         {
+
 	        	 HttpSession session = request.getSession();
 		            session.setAttribute("user", username);
 		            //setting session to expiry in 30 mins
 		            session.setMaxInactiveInterval(30*60);
-		            Cookie userName = new Cookie("user", username);;
+		            Cookie userName = new Cookie("user", username);
 		            response.addCookie(userName);
 		            //Get the encoded URL string
 		            String encodedURL = response.encodeRedirectURL("http://localhost:8080/EventManagerWeb_e/public/myEvents.jsp");
