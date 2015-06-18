@@ -60,6 +60,19 @@ public class EventHelper {
 			}
 	}
 	
+	public static void deleteEvent( Connection conn, String eventId ){
+		
+		try{
+			PreparedStatement deleteUser = null;
+			String query = "DELETE FROM " + db + ".Event WHERE ID=?";
+			deleteUser = conn.prepareStatement( query );
+			deleteUser.setString( 1, eventId );
+			deleteUser.executeUpdate();
+		} catch ( SQLException e ) {
+			e.printStackTrace();
+		}
+	}
+	
 	//TODO: test this query 
 	public static void updateEvent( Connection conn, String id,  String title, String startDate, String endDate, String eventTypeId, 
 			String description, String ownerId, String logo_path,
@@ -100,7 +113,7 @@ public class EventHelper {
 		} catch ( SQLException e ) {
 			e.printStackTrace();
 		}
-		
+		 
 	}
 	
 	//TODO: test this method when connected to MySQL DB
