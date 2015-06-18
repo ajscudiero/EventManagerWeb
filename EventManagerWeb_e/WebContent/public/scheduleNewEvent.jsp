@@ -101,7 +101,7 @@ for(Cookie cookie : cookies){
 		         	</select>
 					</div>
 					<div class="submit">
-						<input class="bluebutton submitbotton" type="submit" value="Sign up" />
+						<input class="bluebutton submitbotton" type="submit" value="Submit" />
 					</div>
 				</div>
 			</form>
