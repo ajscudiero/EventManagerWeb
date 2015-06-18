@@ -27,7 +27,8 @@ public class Update
 		
 		
 		try {
-									
+			
+			/*
 			 Statement statement = con.createStatement();
 			 String query = "UPDATE "  + db + "." + table + "\n" 
 					 + "SET Username = " + userName + ", Password = " + password + ", FirstName = "+ fName + ", LastName = " 
@@ -37,7 +38,33 @@ public class Update
 					 ", Food_ID = " + foodId + ", AdditionalInfo = " + adtInfo + 
 					 "WHERE " + db + "." + table + ".Username = " + userName;
 			 statement.executeUpdate(query);
-			 return true;
+			 */
+			
+			PreparedStatement updateUser = null;
+			String query =  "UPDATE "  + db + "." + table + "\n" 
+					 + "SET Username =?, Password =?, FirstName =?, LastName =?, Address1 =?, Address2 =?, City =?, State =?, Zip =?, "
+					 + "PhoneHome =?, PhoneCell =?, PhoneOffice =?, CompanyName =?, BranchLocation =?, Food_ID =?, AdditionalInfo =? "
+					 + "WHERE " + db + "." + table + ".Username =?";
+			updateUser = con.prepareStatement( query );
+			updateUser.setString( 1,  userName );
+			updateUser.setString( 2,  password );
+			updateUser.setString( 3,  fName );
+			updateUser.setString( 4,  lName );
+			updateUser.setString( 5,  address1 );
+			updateUser.setString( 6,  address2 );
+			updateUser.setString( 7,  city );
+			updateUser.setString( 8,  state );
+			updateUser.setString( 9,  zip );
+			updateUser.setString( 10,  phoneHome );
+			updateUser.setString( 11,  phoneCell );
+			updateUser.setString( 12,  phoneOffice );
+			updateUser.setString( 13,  companyName );
+			updateUser.setString( 14,  branch );
+			updateUser.setInt( 15,  foodId );
+			updateUser.setString( 16,  adtInfo );
+			updateUser.setString( 17,  userName );
+			
+			return true;
 			
 		} catch (SQLException e) {
 			System.out.println("An error has ocurred");

@@ -18,11 +18,23 @@ public class SignIn
 	{
 		
 		try {
+			
+			
 		    ResultSet results;
+		    /*
 		    Statement statement = conn.createStatement();
 		    String query = "SELECT * FROM " + table + " WHERE Username = '" + username + "' "
 		    			+ " AND Password = '" + password + "' ;";
 		    results = statement.executeQuery(query);
+		    */
+			PreparedStatement logIn = null;
+			String query = "SELECT * FROM " + table + " WHERE Username =?"
+	    			+ " AND Password =?;";
+			logIn = conn.prepareStatement( query );
+			logIn.setString( 1, username );
+			logIn.setString( 2, password );
+			results = logIn.executeQuery();
+			
 		    if(!results.next())
 			{
 		    	conn.close();
