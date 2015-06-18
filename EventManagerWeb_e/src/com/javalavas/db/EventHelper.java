@@ -23,7 +23,7 @@ public class EventHelper {
 	}
 	
 	public static void createEvent( Connection conn, String title, String startDate, String endDate, String eventTypeId, 
-			String description, String owner_id, String logo_path,
+			String description, int owner_id, String logo_path,
 			String location, String status ) throws SQLException {
 		
 			try{
@@ -49,15 +49,31 @@ public class EventHelper {
 			   createEvent.setString( 3, endDate);
 			   createEvent.setString( 4, eventTypeId);
 			   createEvent.setString( 5, description);
-			   createEvent.setString( 6, owner_id );
+			   createEvent.setInt( 6, owner_id );
 			   createEvent.setString( 7, logo_path);
 			   createEvent.setString( 8, location);
 			   createEvent.setString( 9, status);
 			   createEvent.executeUpdate();
+		   	   int id = getEventID(conn,title);
+			   registerForEvent(conn,id,owner_id);
+			   
 			   
 			} catch ( SQLException e ) {
 				e.printStackTrace();
 			}
+	}
+	
+	public static void deleteEvent( Connection conn, String eventId ){
+		
+		try{
+			PreparedStatement deleteUser = null;
+			String query = "DELETE FROM " + db + ".Event WHERE ID=?";
+			deleteUser = conn.prepareStatement( query );
+			deleteUser.setString( 1, eventId );
+			deleteUser.executeUpdate();
+		} catch ( SQLException e ) {
+			e.printStackTrace();
+		}
 	}
 	
 	//TODO: test this query 
@@ -100,11 +116,11 @@ public class EventHelper {
 		} catch ( SQLException e ) {
 			e.printStackTrace();
 		}
-		
+		 
 	}
 	
 	//TODO: test this method when connected to MySQL DB
-	public static void registerForEvent( Connection conn, String eventId, String userId ){
+	public static void registerForEvent( Connection conn, int eventId, int userId ){
 			
 		try{
 			
@@ -117,12 +133,13 @@ public class EventHelper {
 		    */
 			
 			PreparedStatement registerForEvent = null;
-			String query = "INSERT INTO " + db + ".Registration (Event_ID, User_ID) VALUES (?, ?);";
+			String query = "INSERT INTO " + db + ".Registrations (Event_ID, User_ID) VALUES (?, ?);";
 			
 			registerForEvent = conn.prepareStatement( query );
-			registerForEvent.setString( 1, eventId );
-			registerForEvent.setString( 2, userId );
+			registerForEvent.setInt( 1, eventId );
+			registerForEvent.setInt( 2, userId );
 			registerForEvent.executeUpdate();
+			
 		   
 		} catch ( SQLException e ) {
 			e.printStackTrace();
@@ -130,7 +147,7 @@ public class EventHelper {
 	}
 			
 	
-	public static ResultSet getRegisteredEvents( Connection conn, String userId ){
+	public static ResultSet getRegisteredEvents( Connection conn, int userId ){
 		
 	ResultSet rs = null;
 		
@@ -152,8 +169,8 @@ public class EventHelper {
 					+ "WHERE " + db + ".Registrations.User_Id=?;";
 			
 			getRegisteredEvents = conn.prepareStatement( query );
-			getRegisteredEvents.setString( 1, userId );
-			getRegisteredEvents.executeQuery();
+			getRegisteredEvents.setInt( 1, userId );
+			rs = getRegisteredEvents.executeQuery();
 			
 		} catch ( SQLException e ) {
 			e.printStackTrace();
@@ -273,6 +290,24 @@ public class EventHelper {
 		
 		return rs;
 	
+	}
+	public static int getEventID(Connection conn,String eventTitle){
+		String query = "Select ID From Event Where Title = '" + eventTitle + "' ";
+		int id = -1;
+		try {
+			Statement stmt = conn.createStatement();
+			ResultSet results = stmt.executeQuery(query);
+			
+			if(results.next())
+				id = results.getInt("ID");
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return id;
+		
 	}
 	
 	
