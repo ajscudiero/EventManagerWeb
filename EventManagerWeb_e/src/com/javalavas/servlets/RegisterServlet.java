@@ -1,12 +1,15 @@
 package com.javalavas.servlets;
 import com.javalavas.db.*;
+
 import java.io.IOException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.javalavas.db.Connect;
 import com.javalavas.db.Register;
@@ -34,17 +37,32 @@ public class RegisterServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html; charset=UTF-8");
+		System.out.println("GET CALLED");
+		doPost( request, response );
+	}
+
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// response.setContentType("text/html; charset=UTF-8");
 	      // Allocate a output writer to write the response message into the network socket
+		
+		  System.out.println("doPost called from RegisterServlet");
+		  
 	      PrintWriter out = response.getWriter();
 	 
 	      // Write the response message, in an HTML page
 	      try {
+	    	 
+	    	  /*
 	         out.println("<!DOCTYPE html>");
 	         out.println("<html><head>");
 	         out.println("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>");
 	         out.println("<title>Echo Servlet</title></head>");
 	         out.println("<body><h2>You have enter</h2>");
+	         */
 	 
 	         // Retrieve the value of the query parameter "username" (from text field)
 	         String username = request.getParameter("username");
@@ -60,36 +78,43 @@ public class RegisterServlet extends HttpServlet {
 	         String address1 = request.getParameter("address1");
 	         String address2 = request.getParameter("address2");
 	         int foodId = 1;
+	         boolean flag = false;
 	         try {
 				Connection conn = Connect.getConnection();
-				boolean flag = Register.registerUser(conn, username, password, firstName, 
+				
+				flag = Register.registerUser(conn, username, password, firstName, 
 						lastName, address1, address2, city, state, "",
 						homePhone, cellPhone, "", companyName, branch,
 						foodId, "");
 				 if(flag)
-		        	 out.println("Registration Success!");
+		         {	 
+					 HttpSession session = request.getSession();
+			            session.setAttribute("user", username);
+			            //setting session to expiry in 30 mins
+			            session.setMaxInactiveInterval(30*60);
+			            Cookie userName = new Cookie("user", username);
+			            Cookie fname = new Cookie("firstName", firstName);
+			            response.addCookie(userName);
+			            response.addCookie(fname);
+			            //Get the encoded URL string
+			            String encodedURL = response.encodeRedirectURL("http://localhost:8080/EventManagerWeb_e/public/myEvents.jsp");
+			            response.sendRedirect(encodedURL);
+		        
+		         }
 		         else
-		        	 out.println("Registration Failed!");
-		        	 
+		         {
+		        	 response.sendRedirect("http://localhost:8080/EventManagerWeb_e/public/register1.html"); 	 
+		         } 
 	         } catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-	        	 
+	        
 	         out.println("</body></html>");
 	      } finally {
 	         out.close();  // Always close the output writer
 	      }
-	   }
-
-	
-	
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 	}
 
 

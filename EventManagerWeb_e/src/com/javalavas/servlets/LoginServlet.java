@@ -7,9 +7,11 @@ import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.javalavas.db.Connect;
 import com.javalavas.db.SignIn;
@@ -42,6 +44,7 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
  	    
+		System.out.println("doPost login called");
 		// Set the response message's MIME type
 	      response.setContentType("text/html; charset=UTF-8");
 	      // Allocate a output writer to write the response message into the network socket
@@ -63,7 +66,7 @@ public class LoginServlet extends HttpServlet {
 	         
 	         boolean userExists = false;
 	        
-	         /*
+	         
 	         try{
 	        	 java.sql.Connection conn = Connect.getConnection();
 	        	 userExists = SignIn.logIn(conn, username, password);
@@ -73,14 +76,21 @@ public class LoginServlet extends HttpServlet {
 	         
 	         if(userExists == true )
 	         {
-	        	 out.println("<h2>Hello," + username + "</h2>");
-	        	 System.out.println("user exists");
+	        	 HttpSession session = request.getSession();
+		            session.setAttribute("user", username);
+		            //setting session to expiry in 30 mins
+		            session.setMaxInactiveInterval(30*60);
+		            Cookie userName = new Cookie("user", username);;
+		            response.addCookie(userName);
+		            //Get the encoded URL string
+		            String encodedURL = response.encodeRedirectURL("http://localhost:8080/EventManagerWeb_e/public/myEvents.jsp");
+		            response.sendRedirect(encodedURL);
+	        
 	         }
 	         else{
-	        	 out.println("<h2>User Not Found</h2>");
-	        	 System.out.println("user does not exists");
+	        	 response.sendRedirect("http://localhost:8080/EventManagerWeb_e/public/index.html");
 	         }
-	         */
+	         
 	         out.println( "<h2>Username: " + username + "</h2>");
 	         out.println( "<h2>Password: " + password + "</h2>");
 	         out.println("</body></html>");

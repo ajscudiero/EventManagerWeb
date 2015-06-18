@@ -6,13 +6,31 @@
 <script type="text/javascript" src="components/jquery-2.1.4.min.js"></script>
 <script type="text/javascript" src="components/bootstrap/js/bootstrap.js"></script>
 <link rel="stylesheet" href="components/bootstrap/css/bootstrap.css"type="text/css"/>
-
+<link rel="shortcut icon" href="favicon.ico">
 <style>
 .nonBoldLabel{
 font-weight:normal;
 }
 </style>
-<title>View Event</title>
+<%
+//allow access only if session exists
+String user = null;
+if(session.getAttribute("user") == null){
+    response.sendRedirect("index.html");
+}else user = (String) session.getAttribute("user");
+String userName = null;
+String sessionID = null;
+Cookie[] cookies = request.getCookies();
+if(cookies !=null){
+for(Cookie cookie : cookies){
+    if(cookie.getName().equals("user")) userName = cookie.getValue();
+    if(cookie.getName().equals("JSESSIONID")) sessionID = cookie.getValue();
+}
+}else{
+    sessionID = session.getId();
+}
+%>
+<title>Schedule New Event</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>

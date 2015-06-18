@@ -13,14 +13,14 @@ public class SignIn
 		logIn(myConnection,user,pass);
 		
 	}*/
-	
+	static String table = "User";
 	public static boolean logIn(Connection conn, String username, String password )
 	{
 		
 		try {
 		    ResultSet results;
 		    Statement statement = conn.createStatement();
-		    String query = "SELECT * FROM java_lava_db.User WHERE Username = '" + username + "' "
+		    String query = "SELECT * FROM " + table + " WHERE Username = '" + username + "' "
 		    			+ " AND Password = '" + password + "' ;";
 		    results = statement.executeQuery(query);
 		    if(!results.next())

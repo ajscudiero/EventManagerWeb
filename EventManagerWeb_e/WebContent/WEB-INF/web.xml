@@ -4,8 +4,24 @@
     <servlet-name>LoginServlet</servlet-name>
     <servlet-class>com.javalavas.servlets.LoginServlet</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>RegisterEventServlet</servlet-name>
+  	<servlet-class>com.javalavas.servlets.RegisterEventServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>RegisterServlet</servlet-name>
+  	<servlet-class>com.javalavas.servlets.RegisterServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>LoginServlet</servlet-name>
     <url-pattern>/login</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>RegisterEventServlet</servlet-name>
+  	<url-pattern>/registerEvent</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>RegisterServlet</servlet-name>
+  	<url-pattern>/echo</url-pattern>
   </servlet-mapping>
 </web-app>

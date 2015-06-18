@@ -23,22 +23,22 @@
 
 		<div class="sign_up">
 			<!----------start form----------->
-			<form class="sign" action="#">
+			<form class="sign" method="post" action = "http://localhost:8080/EventManagerWeb_e/RegisterServlet">
 				<div class="formtitle">Register</div>
 				<!----------start top_section----------->
 				<div class="top_section">
 				
 				<div class="section">
 						<div class="input-sign email">
-							<input type="email"  placeholder="Email" name="username" required /> 
+							<input type="email"  placeholder="Email" name = "username" required /> 
+ 
 						</div>
 						<div class="input-sign re-email">
 							<input type="email" placeholder="Re-confirm email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Re-confirm email';}"required />
 						</div>
 					<div class="section">
 						<div class="input password">
-							<input type="password"  placeholder="Password" name="pass" required/>
-							
+							<input type="password"  placeholder="Password"  name = "password" required/>
 						</div>
 						<div class="input password">
 							<input type="password"  placeholder="Confirm Password" required/>
@@ -55,10 +55,12 @@
 					<!----------start name section----------->
 					<div class="section">
 						<div class="input-sign details">
-							<input type="text"  placeholder="First Name" name="firstName" required/>
+							<input type="text"  placeholder="First Name" name = "firstName" required/>
 						</div>
 						<div class="input-sign details1">
-							<input type="text"  placeholder="Last Name" name="lastName" required/>
+							<input type="text"  placeholder="Last Name" name = "lastName" required/>
+						</div>
+						<div class="input-sign details1">
 						</div>
 						<div class="clear"> </div>
 					</div>
@@ -69,35 +71,36 @@
 					<!----------start city section----------->
 					<div class="section">
 						<div class="input-sign details">
-							<input type="text"  placeholder="City" name="city" required/> 
+							<input type="text"  placeholder="City" name = "city" required/> 
 						</div>
 						<div class="input-sign details1">
-							<input type="text"  placeholder="State" name="state" required/> 
+							<input type="text"  placeholder="Province" name = "state" required/> 
 						</div>
 						<div class="clear"> </div>
 					</div>
 					
 					<div class="section">
 						<div class="input-sign details">
-							<input type="text"  placeholder="Home Phone" name="homePhone" required/> 
+							<input type="text"  placeholder="Home Phone" name = "homePhone" required/> 
 						</div>
 						
 						<div class="section">
 						<div class="input-sign details">
-							<input type="text" placeholder="Company Phone" name="companyPhone" required/> 
+							<input type="text" placeholder="Company Phone" name = "companyPhone" required/> 
 						</div>
 						<div class="input-sign details">
-							<input type="text"  placeholder="Cell Phone" name="cellPhone" required/> 
+							<input type="text"  placeholder="Cell Phone" name = "cellPhone" required/> 
 						</div>
 						<div class="clear"> </div>
 					</div>
 					
 					<div class="section">
 						<div class="input-sign details">
-							<input type="text"  placeholder="Company Name" name="companyName" required/> 
+							<input type="text"  placeholder="Company Name" name = "companyName" required/> 
 						</div>
 						<div class="input-sign details1">
-							<input type="text"  placeholder="Branch Location" name="branch" required/> 
+						
+							<input type="text"  placeholder="Branch Location" name = "branch" required/> 
 						</div>
 						<div class="clear"> </div>
 					</div>
@@ -105,10 +108,11 @@
 					<!----------start Address section----------->
 					<div class="section">
 						<div class="input-sign details">
-							<input type="text"  placeholder="Address1" name="address" required/> 
+							<input type="text"  placeholder="Address1" name = "address1" required/> 
 						</div>
 						<div class="input-sign details1">
-							<input type="text"  placeholder="Address2" name="address2" required/> 
+							
+							<input type="text"  placeholder="Address2" name = "address2" required/> 
 						</div>
 						<div class="clear"> </div>
 					</div>
@@ -124,7 +128,7 @@
 		         </select>
 					</div>
 					<div class="submit">
-						<input class="bluebutton submitbotton" type="submit" value="Sign up" />
+						<input class="bluebutton submitbotton" type="submit" value="Sign-Up" />
 					</div>
 				</div>
 			</form>

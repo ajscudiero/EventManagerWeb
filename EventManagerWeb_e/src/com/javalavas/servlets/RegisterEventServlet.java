@@ -53,13 +53,13 @@ public class RegisterEventServlet extends HttpServlet {
 		//register event in db
 		try{
 			java.sql.Connection conn = Connect.getConnection();
-			EventHelper.createEvent( conn, eventName, date + " " + startTime, date + " " + endTime, "1", "1", additionalInfo, "1", "/path", location, "PENDING");
+			EventHelper.createEvent( conn, eventName, date + " " + startTime, date + " " + endTime, "1", additionalInfo, "1", "/path", location, "PENDING");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		   
 		//redirect
-		String site = "http://localhost:8080/EventManagerWeb_e/public/myEvents.html" ;
+		String site = "http://localhost:8080/EventManagerWeb_e/public/myEvents.jsp" ;
 		response.sendRedirect(site);
 		
 	}

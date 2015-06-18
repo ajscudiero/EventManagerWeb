@@ -4,11 +4,11 @@ import java.sql.*;
 
 public class Register 
 {
-	static final String db = "java_lava_db";
+	static final String db = "sql380927";
 	static final String table = "User";
 	
 	
-	
+	/*
 	public static void main(String args[]) throws SQLException
 	{
 		Connection myConnection = Connect.getConnection();
@@ -17,21 +17,21 @@ public class Register
 				2, "more info");
 		
 	}
-	
-	public static void registerUser(Connection con, String userName, String password, String fName, 
-			String lName, String address1, String address2, String city, String state, int zip,
+	*/
+	public static boolean registerUser(Connection con, String userName, String password, String fName, 
+			String lName, String address1, String address2, String city, String state, String zip,
 			String phoneHome, String phoneCell, String phoneOffice, String companyName, String branch,
 			int foodId, String adtInfo)
 	{
 		
 		
 		try {
-			
+			System.out.print(userName);
 			//do a check to see if the username is taken
 			Statement usernameCheck = con.createStatement();
 			String usernameCheckQ = "SELECT * FROM " + db + "." + table +
 					" WHERE Username = \"" + userName + "\";";
-			
+
 			ResultSet results = usernameCheck.executeQuery(usernameCheckQ);
 			if (!results.next()){ //inside, the userName (email) was free  :)
 								
@@ -41,10 +41,12 @@ public class Register
 			    		+ "PhoneCell, PhoneOffice, CompanyName, BranchLocation, Food_ID, AdditionalInfo"
 			    		+ ") VALUES ( '" + userName + "', "
 		    			+ "'" + password + "', '" + fName + "', '" + lName + "', '" + address1
-		    			+ "', '" + address2 + "', '" + city + "', '" + state + "', " + zip + ", '" 
+		    			+ "', '" + address2 + "', '" + city + "', '" + state + "', '" + zip + "', '" 
 				    	+ phoneHome + "', '" + phoneCell + "', '" + phoneOffice + "', '" + companyName 
 				    	+ "', '" + branch + "', " + foodId+ ", '" + adtInfo + "'); ";
+				 System.out.println(query);
 				 statement.executeUpdate(query);
+				 return true;
 								
 			}
 			else{
@@ -56,6 +58,6 @@ public class Register
 			System.out.println("An error has ocurred");
 			e.printStackTrace();
 		}
-		
+		return false;
 	}
 }
