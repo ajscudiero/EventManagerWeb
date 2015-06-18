@@ -27,9 +27,7 @@ public class Update
 		
 		
 		try {
-			
-			
-								
+									
 			 Statement statement = con.createStatement();
 			 String query = "UPDATE "  + db + "." + table + "\n" 
 					 + "SET Username = " + userName + ", Password = " + password + ", FirstName = "+ fName + ", LastName = " 
