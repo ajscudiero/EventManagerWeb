@@ -12,9 +12,17 @@
   	<servlet-name>RegisterServlet</servlet-name>
   	<servlet-class>com.javalavas.servlets.RegisterServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>UpdateServlet</servlet-name>
+    <servlet-class>com.javalavas.servlets.UpdateServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>LoginServlet</servlet-name>
     <url-pattern>/login</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UpdateServlet</servlet-name>
+    <url-pattern>/updateProfile</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
   	<servlet-name>RegisterEventServlet</servlet-name>
