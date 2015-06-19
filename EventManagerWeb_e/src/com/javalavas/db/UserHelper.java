@@ -24,6 +24,7 @@ public class UserHelper
 		try {
 			
 			getID = con.prepareStatement( query );
+			getID.setString( 1, username );
 			ResultSet results = getID.executeQuery();
 			
 			/*
